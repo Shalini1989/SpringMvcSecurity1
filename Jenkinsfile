@@ -19,7 +19,7 @@ node {
        junit '**/target/surefire-reports/TEST-*.xml'
     }
     stage('uploadtoRepo'){
-       s3Upload consoleLogLevel: 'INFO', dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: 'outputs3jenkins', excludedFile: '', flatten: false, gzipFiles: false, keepForever: false, managedArtifacts: false, noUploadOnFailure: false, selectedRegion: 'us-east-1', showDirectlyInBrowser: false, sourceFile: '**/target/*.war', storageClass: 'STANDARD', uploadFromSlave: false, useServerSideEncryption: false]], pluginFailureResultConstraint: 'FAILURE', profileName: 's3', userMetadata: []    
+       s3Upload consoleLogLevel: 'INFO', dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: 'outputs3jenkins', excludedFile: '', flatten: false, gzipFiles: false, keepForever: false, managedArtifacts: false, noUploadOnFailure: false, selectedRegion: 'us-east-2', showDirectlyInBrowser: false, sourceFile: '**/target/*.war', storageClass: 'STANDARD', uploadFromSlave: false, useServerSideEncryption: false]], pluginFailureResultConstraint: 'FAILURE', profileName: 's3', userMetadata: []    
     }
     stage('Build image') {
         /* This builds the actual image; synonymous to
@@ -29,7 +29,7 @@ node {
     }
     stage ('Docker push') {
        sh '''
-         var=`/var/lib/jenkins/.local/bin/aws ecr get-login --no-include-email --region us-east-1`
+         var=`/var/lib/jenkins/.local/bin/aws ecr get-login --no-include-email --region us-east-2`
          eval $var
          docker tag myrepo:latest 085396960228.dkr.ecr.us-east-1.amazonaws.com/myrepo:latest
          docker push 085396960228.dkr.ecr.us-east-1.amazonaws.com/myrepo:latest
