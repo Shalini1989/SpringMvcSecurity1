@@ -30,7 +30,7 @@ node {
     }
     stage ('Docker push') {
        sh '''
-         var=`/var/lib/jenkins/.local/bin/aws ecr get-login --no-include-email --region us-east-2`
+         var=`aws ecr get-login --no-include-email --region us-east-2`
          eval $var
          docker tag myrepo:latest 085396960228.dkr.ecr.us-east-2.amazonaws.com/myrepo:latest
          docker push 085396960228.dkr.ecr.us-east-2.amazonaws.com/myrepo:latest
