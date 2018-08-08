@@ -22,6 +22,7 @@ node {
        sh '''
 	    aws s3 cp /var/lib/jenkins/jobs/CI_Implementation/workspace/target s3://outputs3jenkins/target --recursive
        '''
+    }
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
