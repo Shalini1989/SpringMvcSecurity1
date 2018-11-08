@@ -31,10 +31,10 @@ node {
     }
     stage ('Docker push') {
        sh '''
-         var=`aws ecr get-login --no-include-email --region us-east-2`
+         var=`aws ecr get-login --no-include-email --region ap-southeast-1`
          eval $var
-         docker tag myrepo:latest 085396960228.dkr.ecr.us-east-2.amazonaws.com/myrepo:latest
-         docker push 085396960228.dkr.ecr.us-east-2.amazonaws.com/myrepo:latest
+         docker tag myrepo:latest 256652164771.dkr.ecr.us-apsoutheast-1.amazonaws.com/myrepo:latest
+         docker push 256652164771.dkr.ecr.us-east-2.amazonaws.com/myrepo:latest
        '''
     //   docker.withRegistry('https://085396960228.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:demo-ecr-credential')
     //   docker.image('myrepo').push('latest')
